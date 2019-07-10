@@ -42,3 +42,20 @@ bootcamp:
 * Cheat sheet (`docs.corda.net/cheat-sheet.html`)
 * Sample CorDapps (`www.corda.net/samples`)
 * Stack Overflow (`www.stackoverflow.com/questions/tagged/corda`)
+
+# Running 3 nodes and performing a transaction between Party A & Party B, but Party C doesn't see this transaction
+
+When the Cordapp is done with required features implemented, run the following commands from command line/terminal. The instructions are for Mac OS X, but could vary for Windows OS 
+
+* ./gradlew deployNodes (This will run the deployNodes task in the build.gradle file)
+* cd build/nodes && runnodes
+
+The above command will open 4 new terminal tabs (or terminal windows) for Notary, Party A, Party B & Party C. 
+
+Navigate to the terminal tab of Party A and run the below command to issue 100 tokens to Party B. What we are doing is converting the ownership of those 100 tokens from Party A to Party B
+
+* flow start TokenIssueFlow owner: PartyB, amount: 100
+
+Run the below command in all nodes and you will see response with transactions only in Party A and Party B
+
+* run vaultQuery contractStateType: bootcamp.TokenState
