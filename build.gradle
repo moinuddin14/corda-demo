@@ -65,6 +65,8 @@ cordapp {
     }
 }
 
+test.jvmArgs = ["-ea", "-javaagent:../lib/quasar.jar"]
+
 task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
     nodeDefaults {
         projectCordapp { deploy = true }
